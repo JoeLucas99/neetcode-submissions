@@ -1,0 +1,15 @@
+class Solution:
+    def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
+
+        wrdList = defaultdict(list)
+        for wrd in strs:
+            wrdKey = [0] * 26
+            for c in wrd:
+                wrdKey[ord("a") - ord(c)] += 1
+            wrdList[tuple(wrdKey)].append(wrd)
+        return list(wrdList.values())
+
+
+
+#hm[tuple(char val arr)] : lsit of words
+#return arr(hm.values)

@@ -1,0 +1,17 @@
+class Solution:
+    def checkInclusion(self, s1: str, s2: str) -> bool:
+        n1, n2 = len(s1), len(s2)
+        if n2 < n1: return False
+        n1Map, n2Map = [0] * 26, [0] * 26
+
+        for i in range(n1):
+            n1Map[ord("a") - ord(s1[i])] += 1
+            n2Map[ord("a") - ord(s2[i])] += 1
+        
+        if n1Map == n2Map: return True
+        
+        for i in range(n1, n2):
+            n2Map[ord("a") - ord(s2[i - n1])] -= 1
+            n2Map[ord("a") - ord(s2[i])] += 1
+            if n1Map == n2Map: return True
+        return False
